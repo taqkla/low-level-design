@@ -4,99 +4,55 @@
 
 // BAD
 
-class Rectangle {
-  constructor() {
-    this.width = 0;
-    this.height = 0;
+class invoice {
+  constructor(invoice, databaseConnection, filePath) {
+    this.invoice = invoice;
+    this.databaseConnection = databaseConnection;
+    this.filePath = filePath;
   }
 
-  setColor(color) {
-    // ...
-  }
-
-  render(area) {
-    console.log(area);
-  }
-
-  setWidth(width) {
-    this.width = width;
-  }
-
-  setHeight(height) {
-    this.height = height;
-  }
-
-  getArea() {
-    return this.width * this.height;
+  save() {
   }
 }
 
-class Square extends Rectangle {
-  setWidth(width) {
-    this.width = width;
-    this.height = width;
-  }
-
-  setHeight(height) {
-    this.width = height;
-    this.height = height;
+class InvoiceDao {
+  save() {
+    throw new Error("Method 'save()' must be implemented.");
   }
 }
 
-function renderLargeRectangles(rectangles) {
-  rectangles.forEach((rectangle) => {
-    rectangle.setWidth(4);
-    rectangle.setHeight(5);
-    const area = rectangle.getArea(); // BAD: Returns 25 for Square. Should be 20.
-    rectangle.render(area);
-  });
-}
-
-const rectangles = [new Rectangle(), new Rectangle(), new Square()];
-renderLargeRectangles(rectangles);
-
-
-// GOOD
-
-class Shape {
-  setColor(color) {
-    // ...
+class FileInvoiceDao extends InvoiceDao {
+  constructor(invoice, databaseConnection) {
+    this.invoice = invoice;
+    this.databaseConnection = databaseConnection;
   }
 
-  render(area) {
-    console.log(area);
+  save() {
+    console.log(`Saving invoice with ID ${this.id} and name ${this.name}`)
+    // Actual implementation to save the invoice to a database
   }
 }
 
-class Rectangle extends Shape {
-  constructor(width, height) {
-    super();
-    this.width = width;
-    this.height = height;
+class FileInvoiceDao extends InvoiceDao {
+  constructor(invoice, filePath) {
+    this.invoice = invoice;
+    this.filePath = this.filePath;
   }
 
-  getArea() {
-    return this.width * this.height;
-  }
-}
-
-class Square extends Shape {
-  constructor(length) {
-    super();
-    this.length = length;
-  }
-
-  getArea() {
-    return this.length * this.length;
+  save() {
+    console.log(`Saving invoice with ID ${this.id} and name ${this.name}`)
+    // Actual implementation to save the invoice to a file
   }
 }
 
-function renderLargeShapes(shapes) {
-  shapes.forEach((shape) => {
-    const area = shape.getArea();
-    shape.render(area);
-  });
-}
 
-const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
-renderLargeShapes(shapes);
+const fileInvoice = new FileInvoiceDao("Audit", filePath);
+const dbInvoice = new FileInvoiceDao("Incoming", databaseConnection);
+
+fileInvoice.save(); // this can 
+dbInvoice.save();
+
+
+
+
+
