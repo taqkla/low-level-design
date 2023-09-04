@@ -17,6 +17,6 @@ class Logger {
     }
 }
 
-const logger = new Logger()
-Object.freeze(logger)
-module.exports = logger
+const logger = new Logger();
+Object.freeze(logger);
+module.exports = logger;

@@ -3,3 +3,6 @@ const logSecondImplementation = require('./SecondUse');
 
 logFirstImplementation();
 logSecondImplementation();
+
+
+// 

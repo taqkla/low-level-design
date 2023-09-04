@@ -2,6 +2,7 @@
 
 // Definition:  Objects or entities should be open for extension but closed for modification.
 
+// Example: Think of a coffee maker with a standard coffee - making process, but it allows you to add different flavours without having to modify its existing mechanism.You can add a vanilla or hazelnut flavour pod to make different kinds of coffee, but the basic coffee - making process remains the same.The coffee maker is "closed" for modification(you don't have to mess with its internals to make coffee), but it's "open" for extension(you can extend its functionality by adding new flavours).
 
 // BAD
 // Initial State
@@ -34,6 +35,8 @@ class invoice {
         // saves invoice to file.
     }
 }
+
+
 
 class InvoiceDao {
     save() {
